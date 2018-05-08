@@ -1,0 +1,634 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <Description>Modified version of https://github.com/podio/podio-dotnet/</Description>
+    <PackageId>PodioCore.Async</PackageId>
+    <PackageVersion>0.0.2</PackageVersion>
+    <Authors>Saasafras</Authors>
+    <Owners>Saasafras</Owners>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Podio .NET\Models\Action.cs">
+      <Link>Action.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ActionService.cs">
+      <Link>ActionService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Activity.cs">
+      <Link>Activity.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ActivityGroup.cs">
+      <Link>ActivityGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\AddSpaceMemberRequest.cs">
+      <Link>AddSpaceMemberRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Answer.cs">
+      <Link>Answer.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppCalculation.cs">
+      <Link>AppCalculation.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppField.cs">
+      <Link>AppField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\AppItemField.cs">
+      <Link>AppItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Application.cs">
+      <Link>Application.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ApplicationConfig.cs">
+      <Link>ApplicationConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ApplicationConfiguration.cs">
+      <Link>ApplicationConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ApplicationCreateUpdateRequest.cs">
+      <Link>ApplicationCreateUpdateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ApplicationDependency.cs">
+      <Link>ApplicationDependency.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ApplicationField.cs">
+      <Link>ApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ApplicationRevision.cs">
+      <Link>ApplicationRevision.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppMarketCategory.cs">
+      <Link>AppMarketCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\AppMarketService.cs">
+      <Link>AppMarketService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppMarketShare.cs">
+      <Link>AppMarketShare.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppMarketShareInstall.cs">
+      <Link>AppMarketShareInstall.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppMarketShares.cs">
+      <Link>AppMarketShares.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\AppReferenceApplicationField.cs">
+      <Link>AppReferenceApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AppValues.cs">
+      <Link>AppValues.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\AutoTask.cs">
+      <Link>AutoTask.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Batch.cs">
+      <Link>Batch.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\BatchService.cs">
+      <Link>BatchService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\BulkDeleteRequest.cs">
+      <Link>BulkDeleteRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\BulkDeletionStatus.cs">
+      <Link>BulkDeletionStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ByLine.cs">
+      <Link>ByLine.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\CalculationApplicationField.cs">
+      <Link>CalculationApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\CalculationItemField.cs">
+      <Link>CalculationItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\CalendarEvent.cs">
+      <Link>CalendarEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\CalendarService.cs">
+      <Link>CalendarService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\CalendarSummary.cs">
+      <Link>CalendarSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\CategoryApplicationField.cs">
+      <Link>CategoryApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\CategoryItemField.cs">
+      <Link>CategoryItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Cause.cs">
+      <Link>Cause.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Clone.cs">
+      <Link>Clone.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Comment.cs">
+      <Link>Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\CommentCreateUpdateRequest.cs">
+      <Link>CommentCreateUpdateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Contact.cs">
+      <Link>Contact.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\ContactApplicationField.cs">
+      <Link>ContactApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\ContactItemField.cs">
+      <Link>ContactItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ContactService.cs">
+      <Link>ContactService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ContactTotal.cs">
+      <Link>ContactTotal.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Conversation.cs">
+      <Link>Conversation.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ConversationCreateRequest.cs">
+      <Link>ConversationCreateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ConversationEvent.cs">
+      <Link>ConversationEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ConversationMessage.cs">
+      <Link>ConversationMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ConversationParticipant.cs">
+      <Link>ConversationParticipant.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ConversationService.cs">
+      <Link>ConversationService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\CreatedGrant.cs">
+      <Link>CreatedGrant.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\CreateUpdateOptions.cs">
+      <Link>CreateUpdateOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\DateApplicationField.cs">
+      <Link>DateApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\DateItemField.cs">
+      <Link>DateItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\DurationApplicationField.cs">
+      <Link>DurationApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\DurationItemField.cs">
+      <Link>DurationItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Effect.cs">
+      <Link>Effect.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\EmailApplicationField.cs">
+      <Link>EmailApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\EmailItemField.cs">
+      <Link>EmailItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Embed.cs">
+      <Link>Embed.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\EmbedApplicationField.cs">
+      <Link>EmbedApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\EmbedItemField.cs">
+      <Link>EmbedItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\EmbedService.cs">
+      <Link>EmbedService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ExportFilter.cs">
+      <Link>ExportFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FieldConfig.cs">
+      <Link>FieldConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\FileApplicationField.cs">
+      <Link>FileApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FileAttachment.cs">
+      <Link>FileAttachment.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FileResponse.cs">
+      <Link>FileResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\FileService.cs">
+      <Link>FileService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\FileUtils.cs">
+      <Link>FileUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\FilterBase.cs">
+      <Link>FilterBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\FilterByView.cs">
+      <Link>FilterByView.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\FilterOptions.cs">
+      <Link>FilterOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Flow.cs">
+      <Link>Flow.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FlowAttribute.cs">
+      <Link>FlowAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\FlowService.cs">
+      <Link>FlowService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Form.cs">
+      <Link>Form.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FormField.cs">
+      <Link>FormField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FormFieldSettings.cs">
+      <Link>FormFieldSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\FormService.cs">
+      <Link>FormService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FormSettings.cs">
+      <Link>FormSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\FormSettingsText.cs">
+      <Link>FormSettingsText.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Grant.cs">
+      <Link>Grant.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\GrantService.cs">
+      <Link>GrantService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Hook.cs">
+      <Link>Hook.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\HookService.cs">
+      <Link>HookService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Authentication\IAuthStore.cs">
+      <Link>IAuthStore.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Image.cs">
+      <Link>Image.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\ImageApplicationField.cs">
+      <Link>ImageApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\ImageItemField.cs">
+      <Link>ImageItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ImporterInfo.cs">
+      <Link>ImporterInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ImporterService.cs">
+      <Link>ImporterService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ImportMappingContactField.cs">
+      <Link>ImportMappingContactField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ImportMappingField.cs">
+      <Link>ImportMappingField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Integration.cs">
+      <Link>Integration.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\IntegrationAvailableAppField.cs">
+      <Link>IntegrationAvailableAppField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\IntegrationService.cs">
+      <Link>IntegrationService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Item.cs">
+      <Link>Item.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemCalculate.cs">
+      <Link>ItemCalculate.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ItemCalculateRequest.cs">
+      <Link>ItemCalculateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ItemCreateUpdateRequest.cs">
+      <Link>ItemCreateUpdateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemDiff.cs">
+      <Link>ItemDiff.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemField.cs">
+      <Link>ItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemFieldMicro.cs">
+      <Link>ItemFieldMicro.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemMicro.cs">
+      <Link>ItemMicro.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemReference.cs">
+      <Link>ItemReference.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ItemRevision.cs">
+      <Link>ItemRevision.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Serialization\JSONSerializer.cs">
+      <Link>JSONSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\LinkedAccountData.cs">
+      <Link>LinkedAccountData.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\LocationApplicationField.cs">
+      <Link>LocationApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\LocationItemField.cs">
+      <Link>LocationItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\MimeTypeMapping.cs">
+      <Link>MimeTypeMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\MoneyApplicationField.cs">
+      <Link>MoneyApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\MoneyItemField.cs">
+      <Link>MoneyItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Notifications.cs">
+      <Link>Notifications.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\NotificationService.cs">
+      <Link>NotificationService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Authentication\NullAuthStore.cs">
+      <Link>NullAuthStore.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\NumericApplicationField.cs">
+      <Link>NumericApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\NumericItemField.cs">
+      <Link>NumericItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Authentication\OAuth.cs">
+      <Link>OAuth.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ObjectExtensions.cs">
+      <Link>ObjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Organization.cs">
+      <Link>Organization.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\OrganizationContactTotal.cs">
+      <Link>OrganizationContactTotal.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\OrganizationLoginReport.cs">
+      <Link>OrganizationLoginReport.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\OrganizationMember.cs">
+      <Link>OrganizationMember.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\OrganizationMicro.cs">
+      <Link>OrganizationMicro.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\OrganizationService.cs">
+      <Link>OrganizationService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\PhoneApplicationField.cs">
+      <Link>PhoneApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\PhoneItemField.cs">
+      <Link>PhoneItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Podio.cs">
+      <Link>Podio.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\PodioCollection.cs">
+      <Link>PodioCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Exceptions\PodioException.cs">
+      <Link>PodioException.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Authentication\PodioOAuth.cs">
+      <Link>PodioOAuth.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\PodioResponse.cs">
+      <Link>PodioResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Presence.cs">
+      <Link>Presence.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Profile.cs">
+      <Link>Profile.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\ProgressApplicationField.cs">
+      <Link>ProgressApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\ProgressItemField.cs">
+      <Link>ProgressItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Push.cs">
+      <Link>Push.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Question.cs">
+      <Link>Question.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\QuestionAnswer.cs">
+      <Link>QuestionAnswer.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\QuestionApplicationField.cs">
+      <Link>QuestionApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\QuestionItemField.cs">
+      <Link>QuestionItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\QuestionOption.cs">
+      <Link>QuestionOption.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\QuestionService.cs">
+      <Link>QuestionService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Range.cs">
+      <Link>Range.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Rating.cs">
+      <Link>Rating.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\RatingService.cs">
+      <Link>RatingService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\RatingType.cs">
+      <Link>RatingType.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Recurrence.cs">
+      <Link>Recurrence.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\RecurrenceService.cs">
+      <Link>RecurrenceService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Ref.cs">
+      <Link>Ref.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Reference.cs">
+      <Link>Reference.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\ReferenceGroup.cs">
+      <Link>ReferenceGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ReferenceService.cs">
+      <Link>ReferenceService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Reminder.cs">
+      <Link>Reminder.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ReminderService.cs">
+      <Link>ReminderService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\RowPreview.cs">
+      <Link>RowPreview.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\SearchReferencesRequest.cs">
+      <Link>SearchReferencesRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\SearchResult.cs">
+      <Link>SearchResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\SearchResultV2.cs">
+      <Link>SearchResultV2.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\SearchService.cs">
+      <Link>SearchService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Seat.cs">
+      <Link>Seat.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Authentication\ShareFileOAuth.cs">
+      <Link>ShareFileOAuth.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Space.cs">
+      <Link>Space.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\SpaceContactTotal.cs">
+      <Link>SpaceContactTotal.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\SpaceMember.cs">
+      <Link>SpaceMember.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\SpaceMembersService.cs">
+      <Link>SpaceMembersService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\SpaceMicro.cs">
+      <Link>SpaceMicro.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\SpaceService.cs">
+      <Link>SpaceService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\StateApplicationField.cs">
+      <Link>StateApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\StateItemField.cs">
+      <Link>StateItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Status.cs">
+      <Link>Status.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\StatusService.cs">
+      <Link>StatusService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\StreamObject.cs">
+      <Link>StreamObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\StreamObjectV3.cs">
+      <Link>StreamObjectV3.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\StreamService.cs">
+      <Link>StreamService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\StringResponse.cs">
+      <Link>StringResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Subscription.cs">
+      <Link>Subscription.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\SubscriptionService.cs">
+      <Link>SubscriptionService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Tag.cs">
+      <Link>Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\TaggedObject.cs">
+      <Link>TaggedObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\TagService.cs">
+      <Link>TagService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Task.cs">
+      <Link>Task.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\TaskCollection.cs">
+      <Link>TaskCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\TaskCreateUpdateRequest.cs">
+      <Link>TaskCreateUpdateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\TaskLabel.cs">
+      <Link>TaskLabel.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\TaskReport.cs">
+      <Link>TaskReport.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\TaskService.cs">
+      <Link>TaskService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\TaskSummary.cs">
+      <Link>TaskSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ApplicationFields\TextApplicationField.cs">
+      <Link>TextApplicationField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\ItemFields\TextItemField.cs">
+      <Link>TextItemField.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\User.cs">
+      <Link>User.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\UserMail.cs">
+      <Link>UserMail.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\UserService.cs">
+      <Link>UserService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\UserStatus.cs">
+      <Link>UserStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Utils\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Via.cs">
+      <Link>Via.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\View.cs">
+      <Link>View.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Request\ViewCreateUpdateRequest.cs">
+      <Link>ViewCreateUpdateRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\ViewService.cs">
+      <Link>ViewService.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Models\Widget.cs">
+      <Link>Widget.cs</Link>
+    </Compile>
+    <Compile Include="..\Podio .NET\Services\WidgetService.cs">
+      <Link>WidgetService.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+  </ItemGroup>
+</Project>

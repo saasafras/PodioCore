@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>0.0.1</PackageVersion>
+    <PackageId>PodioCore.Items</PackageId>
+    <Authors>Alex Shull</Authors>
+    <Description>adapted from https://github.com/podio/podio-dotnet/</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+    <PackageReference Include="PodioCore.Async" Version="0.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Podio .NET\Services\ItemService.cs">
+      <Link>ItemService.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
