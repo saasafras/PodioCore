@@ -14,7 +14,7 @@ namespace PodioCore.Comments
             initialized = true;
         }
 
-        public static async Task<Comment> Get(this Podio client, int commentId)
+        public static async Task<Comment> GetComment(this Podio client, int commentId)
         {
             if (!initialized)
                 init(client);
@@ -22,14 +22,14 @@ namespace PodioCore.Comments
             var result = await _service.GetComment(commentId);
             return result;
         }
-
-        public static async Task<int> CommentOnItem(this Podio client, string comment, int itemId)
+        
+        public static async Task<int> CommentOnItem(this Podio client, string comment, int itemId, bool hook)
         {
             if (!initialized)
                 init(client);
             var request = new Models.Request.CommentCreateUpdateRequest();
             request.Value = comment;
-            var result = await _service.AddCommentToObject("item", itemId, request, silent: true, hook: false);
+            var result = await _service.AddCommentToObject("item", itemId, request, silent: true, hook: hook);
             return result;
         }
     }
