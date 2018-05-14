@@ -4,7 +4,7 @@ using PodioCore.Models;
 using PodioCore.Utils;
 using System.Threading.Tasks;
 
-namespace PodioCore.Services
+namespace PodioCore.Contacts
 {
     public class ContactService
     {

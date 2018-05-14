@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 using PodioCore.Models;
+using PodioCore.Utils;
 using PodioCore.Services;
 namespace PodioCore.Items
 {
@@ -67,5 +68,32 @@ namespace PodioCore.Items
             var refs = await _service.GetItemReferences(itemId);
             return refs;
         }
+
+        public static async Task<PodioCollection<Item>> FilterItems(this Podio client, int appId, Models.Request.FilterOptions filterOptions)
+		{
+			if (!initialized)
+                init(client);
+
+			var items = await _service.FilterItems(appId, filterOptions, false);
+			return items;
+		}
+
+        public static async Task<List<ItemRevision>> GetItemRevisions(this Podio client, int itemId)
+		{
+			if (!initialized)
+                init(client);
+            
+			var rev = await _service.GetItemRevisions(itemId);
+			return rev;
+		}
+
+        public static async Task<List<ItemDiff>> GetRevisionDifference(this Podio client, int itemId, int from, int to)
+		{
+			if (!initialized)
+                init(client);
+
+			var diff = await _service.GetItemRevisionDifference(itemId, from, to);
+			return diff;
+		}
     }
 }
