@@ -14,8 +14,8 @@ namespace PodioCore.Applications
             _service = new ApplicationService(client);
             initialized = true;
         }
-
-        public static async Task<Application> Get(this Podio client, int appId)
+        
+		public static async Task<Application> GetApplication(this Podio client, int appId)
         {
             if (!initialized)
                 init(client);
@@ -24,7 +24,16 @@ namespace PodioCore.Applications
             return result;
         }
 
-        public static async Task<int> Post(this Podio client, Application app, int appId)
+		public static async Task<Application> GetFullApplication(this Podio client, int appId)
+        {
+            if (!initialized)
+                init(client);
+
+            var result = await _service.GetApp(appId, view: "full");
+            return result;
+        }
+
+        public static async Task<int> CreateApplication(this Podio client, Application app)
         {
             if (!initialized)
                 init(client);
@@ -33,7 +42,7 @@ namespace PodioCore.Applications
             return result;
         }
 
-        public static async Task Put(this Podio client, Application app, int appId)
+        public static async Task UpdateApplication(this Podio client, Application app)
         {
             if (!initialized)
                 init(client);
