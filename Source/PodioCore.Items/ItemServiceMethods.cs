@@ -15,7 +15,16 @@ namespace PodioCore.Items
             initialized = true;
         }
 
-        public static async Task<Item> Get(this Podio client, int itemId)
+		public static async Task<Item> GetItem(this Podio client, int itemId)
+        {
+            if (!initialized)
+                init(client);
+            
+            var result = await _service.GetItemBasic(itemId, false);
+            return result;
+        }
+        
+		public static async Task<Item> GetFullItem(this Podio client, int itemId)
         {
             if (!initialized)
                 init(client);
@@ -23,57 +32,31 @@ namespace PodioCore.Items
             var result = await _service.GetItem(itemId, false);
             return result;
         }
-
-        public static async Task<int> Post(this Podio client, Item item, int appId)
+        
+        public static async Task<int> CreateItem(this Podio client, Item item, int appId, bool hook)
         {
             if (!initialized)
                 init(client);
 
-            var result = await _service.AddNewItem(appId, item, silent: true, hook: false);
+            var result = await _service.AddNewItem(appId, item, silent: true, hook: hook);
             return result;
         }
 
-        public static async Task<int> PostWithEvent(this Podio client, Item item, int appId)
+        public static async Task<int> UpdateItem(this Podio client, Item item, bool hook)
         {
             if (!initialized)
                 init(client);
 
-            var result = await _service.AddNewItem(appId, item, silent: true, hook: true);
-            return result;
-        }
-
-        public static async Task<int> Put(this Podio client, Item item, int appId)
-        {
-            if (!initialized)
-                init(client);
-
-            var result = await _service.UpdateItem(item, silent: true, hook: false);
+            var result = await _service.UpdateItem(item, silent: true, hook: hook);
             return result.Value;
         }
 
-        public static async Task<int> PutWithEvent(this Podio client, Item item, int appId)
+        public static async Task Delete(this Podio client, int itemId, bool hook)
         {
             if (!initialized)
                 init(client);
-
-            var result = await _service.UpdateItem(item, silent: true, hook: false);
-            return result.Value;
-        }
-
-        public static async Task Delete(this Podio client, int itemId)
-        {
-            if (!initialized)
-                init(client);
-
-            await _service.DeleteItem(itemId, silent: true, hook: false);
-        }
-
-        public static async Task DeleteWithEvent(this Podio client, int itemId)
-        {
-            if (!initialized)
-                init(client);
-
-            await _service.DeleteItem(itemId, silent: true, hook: true);
+            
+            await _service.DeleteItem(itemId, silent: true, hook: hook);
         }
 
         public static async Task<IEnumerable<ItemReference>> GetReferringItems(this Podio client, int itemId)
