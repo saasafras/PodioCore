@@ -14,7 +14,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
-    <PackageReference Include="PodioCore.Async" Version="0.0.2" />
+    <PackageReference Include="PodioCore.Async" Version="0.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Podio .NET\Services\CommentService.cs">
