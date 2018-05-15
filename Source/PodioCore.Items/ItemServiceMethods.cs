@@ -52,7 +52,7 @@ namespace PodioCore.Items
             return result.Value;
         }
 
-        public static async Task Delete(this Podio client, int itemId, bool hook)
+        public static async Task DeleteItem(this Podio client, int itemId, bool hook)
         {
             if (!initialized)
                 init(client);
