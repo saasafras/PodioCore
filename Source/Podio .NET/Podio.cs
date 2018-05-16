@@ -179,6 +179,9 @@ namespace PodioCore
 
         private HttpRequestMessage CreateHttpRequest(string url, HttpMethod httpMethod, bool addAuthorizationHeader = true, bool isFileDownload = false)
         {
+			if (!initialized)
+				init();
+			
             var fullUrl = ApiUrl + url;
             if (url.StartsWith("http")) fullUrl = url;
 
