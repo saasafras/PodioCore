@@ -49,5 +49,14 @@ namespace PodioCore.Applications
 
             await _service.UpdateApp(app, silent: false);
         }
+
+        public static async Task<List<Application>> GetApplicationsInSpace(this Podio client, int spaceId)
+		{
+			if (!initialized)
+				init(client);
+
+			var result = await _service.GetAppsBySpace(spaceId);
+			return result;
+		}
     }
 }

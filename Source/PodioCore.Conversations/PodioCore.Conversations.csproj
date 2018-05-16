@@ -10,7 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PodioCore.Async" Version="0.0.4" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+    <PackageReference Include="PodioCore.Async" Version="0.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Podio .NET\Services\ConversationService.cs">
+      <Link>ConversationService.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>
