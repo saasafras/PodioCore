@@ -25,6 +25,15 @@ namespace PodioCore.Items
             return result;
         }
         
+		public static async Task<Item> GetAppItem(this Podio client, int appId, int appItemId)
+        {
+            if (!initialized)
+                init(client);
+            
+            var result = await _service.GetItemByAppItemId(appId, appItemId);
+            return result;
+        }
+        
 		public static async Task<Item> GetFullItem(this Podio client, int itemId)
         {
             if (!initialized)
