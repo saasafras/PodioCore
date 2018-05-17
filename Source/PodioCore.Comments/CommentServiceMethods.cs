@@ -27,10 +27,20 @@ namespace PodioCore.Comments
         {
             if (!initialized)
                 init(client);
+			
             var request = new Models.Request.CommentCreateUpdateRequest();
             request.Value = comment;
             var result = await _service.AddCommentToObject("item", itemId, request, silent: true, hook: hook);
             return result;
         }
+
+        public static async Task<List<Comment>> GetCommentsOnItem(this Podio client, int itemId)
+		{
+			if (!initialized)
+                init(client);
+
+			var result = await _service.GetCommentsOnObject("item", itemId);
+			return result;
+		}
     }
 }
