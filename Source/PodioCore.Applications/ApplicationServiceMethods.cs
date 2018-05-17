@@ -51,12 +51,21 @@ namespace PodioCore.Applications
         }
 
         public static async Task<List<Application>> GetApplicationsInSpace(this Podio client, int spaceId)
-		{
-			if (!initialized)
-				init(client);
+        {
+            if (!initialized)
+                init(client);
 
-			var result = await _service.GetAppsBySpace(spaceId);
-			return result;
-		}
+            var result = await _service.GetAppsBySpace(spaceId);
+            return result;
+        }
+
+        public static async Task<List<Application>> GetApplicationsInSpaceWithFields(this Podio client, int spaceId, Dictionary<string,string> attributes)
+        {
+            if (!initialized)
+                init(client);
+            
+            var result = await _service.GetAppsBySpace(spaceId, false, attributes);
+            return result;
+        }
     }
 }
