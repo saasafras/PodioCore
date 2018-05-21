@@ -58,6 +58,12 @@ namespace PodioCore.Items
                 init(client);
 
             var result = await _service.UpdateItem(item, silent: true, hook: hook);
+            if(!result.HasValue)
+			{
+				System.Console.WriteLine("Podio update failed for item:");
+				System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(item));
+				throw new System.Exception("Podio update failed. Please check the logs.");
+			}
             return result.Value;
         }
 
