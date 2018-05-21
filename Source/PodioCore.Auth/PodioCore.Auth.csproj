@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>0.0.1</PackageVersion>
+    <Authors>Saasafras</Authors>
+    <PackageId>PodioCore.Auth</PackageId>
+    <Description>adapted from https://github.com/podio/podio-dotnet/</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PodioCore.Async" Version="0.0.5" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+  </ItemGroup>
+</Project>
