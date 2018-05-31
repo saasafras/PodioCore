@@ -36,17 +36,7 @@ namespace PodioCore
             AuthStore = new NullAuthStore();
             HttpClient = new HttpClient();
         }
-
-        private bool initialized;
-        private void init()
-        {
-            if (initialized)
-                return;
-            var accessToken = accessTokenProvider.AccessToken;
-            OAuth = new PodioOAuth { AccessToken = accessToken, TokenType = "bearer" };
-            initialized = true;
-        }
-
+        
         #region Request Helpers
 
         public async Task<T> Get<T>(string url, Dictionary<string, string> requestData = null, bool isFileDownload = false, bool returnAsString = false)
@@ -111,9 +101,6 @@ namespace PodioCore
 
         public async Task<T> Request<T>(HttpRequestMessage httpRequest, bool isFileDownload = false, bool returnAsString = false) where T : new()
         {
-            if (!initialized)
-                init();
-
             if (requestProcessor != null)
                 httpRequest = requestProcessor.Process(httpRequest);
             
@@ -179,9 +166,6 @@ namespace PodioCore
 
         private HttpRequestMessage CreateHttpRequest(string url, HttpMethod httpMethod, bool addAuthorizationHeader = true, bool isFileDownload = false)
         {
-			if (!initialized)
-				init();
-			
             var fullUrl = ApiUrl + url;
             if (url.StartsWith("http")) fullUrl = url;
 
@@ -198,7 +182,8 @@ namespace PodioCore
 
             if (addAuthorizationHeader)
             {
-                OAuth?.AddAuthorizationHeader(request.Headers);
+				OAuth = new PodioOAuth { AccessToken = accessTokenProvider.AccessToken };
+                OAuth.AddAuthorizationHeader(request.Headers);
             }
 
             return request;
