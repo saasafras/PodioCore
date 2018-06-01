@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>0.0.2</PackageVersion>
+    <PackageVersion>0.0.4</PackageVersion>
     <Authors>Saasafras</Authors>
     <PackageId>PodioCore.Auth</PackageId>
     <Description>adapted from https://github.com/podio/podio-dotnet/</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PodioCore.Async" Version="0.0.5" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+    <PackageReference Include="PodioCore.Async" Version="0.0.8" />
   </ItemGroup>
 </Project>

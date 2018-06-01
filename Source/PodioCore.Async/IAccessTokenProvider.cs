@@ -3,6 +3,6 @@ namespace PodioCore
 {
     public interface IAccessTokenProvider
     {
-        string AccessToken { get; }
+        PodioAccessToken AccessToken { get; }
     }
 }

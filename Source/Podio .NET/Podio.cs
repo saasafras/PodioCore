@@ -16,7 +16,6 @@ namespace PodioCore
 {
     public class Podio
     {
-        public OAuth OAuth { get; set; }
         public IAuthStore AuthStore { get; set; }
         public int RateLimit { get; private set; }
         public int RateLimitRemaining { get; private set; }
@@ -36,10 +35,12 @@ namespace PodioCore
             AuthStore = new NullAuthStore();
             HttpClient = new HttpClient();
         }
-        
-        #region Request Helpers
 
-        public async Task<T> Get<T>(string url, Dictionary<string, string> requestData = null, bool isFileDownload = false, bool returnAsString = false)
+		public PodioAccessToken Token => accessTokenProvider.AccessToken;
+
+		#region Request Helpers
+
+		public async Task<T> Get<T>(string url, Dictionary<string, string> requestData = null, bool isFileDownload = false, bool returnAsString = false)
             where T : new()
         {
             string queryString = Utility.DictionaryToQueryString(requestData);
@@ -182,8 +183,7 @@ namespace PodioCore
 
             if (addAuthorizationHeader)
             {
-				OAuth = new PodioOAuth { AccessToken = accessTokenProvider.AccessToken };
-                OAuth.AddAuthorizationHeader(request.Headers);
+				request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessTokenProvider.AccessToken.Token);
             }
 
             return request;
@@ -197,8 +197,6 @@ namespace PodioCore
                 case 400:
                     if (podioError.Error == "invalid_grant")
                     {
-                        //Reset auth info
-                        OAuth = null;
                         throw new PodioInvalidGrantException(status, podioError);
                     }
                     else
@@ -226,17 +224,6 @@ namespace PodioCore
             }
         }
 
-        #endregion
-
-
-        /// <summary>
-        ///     Check if there is a stored access token already present.
-        /// </summary>
-        /// <returns></returns>
-        public bool IsAuthenticated()
-        {
-            return OAuth != null && OAuth.IsAuthenticated();
-        }
-
+        #endregion               
     }
 }

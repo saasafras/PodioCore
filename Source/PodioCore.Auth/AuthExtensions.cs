@@ -3,14 +3,17 @@ using System.Threading.Tasks;
 using PodioCore.Auth;
 using System.Net.Http;
 using PodioCore.Utils.Authentication;
+using System;
+
 namespace PodioCore.Auth
 {
 	public class PasswordAuthTokenProvider : IAccessTokenProvider
 	{
 		string clientId, clientSecret, username, password;
-		public string AccessToken => new System.Lazy<string>(
+		public PodioAccessToken AccessToken => new System.Lazy<PodioAccessToken>(
 			() => auth()
 		).Value;
+
 
 		public PasswordAuthTokenProvider(string clientId, string clientSecret, string username, string password)
 		{
@@ -20,7 +23,7 @@ namespace PodioCore.Auth
 			this.password = password;
 		}
         
-		private string auth()
+		private PodioAccessToken auth()
 		{
 			var authRequest = new Dictionary<string, string>()
 			{
@@ -38,7 +41,19 @@ namespace PodioCore.Auth
 			var responseString = response.Content.ReadAsStringAsync().Result;
 			var podioOAuth = Newtonsoft.Json.JsonConvert.DeserializeObject<PodioOAuth>(responseString);
 
-			return podioOAuth.AccessToken;
-		}    
+			var expiration = int.Parse(podioOAuth.ExpiresIn) + getEpoch();
+			return new PodioAccessToken
+			{
+				Token = podioOAuth.AccessToken,
+				Expiration = expiration
+			};
+		}
+
+		private int getEpoch()
+        {
+            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            int secondsSinceEpoch = (int)t.TotalSeconds;
+            return secondsSinceEpoch;
+        }	
 	}
 }
