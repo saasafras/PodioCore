@@ -36,7 +36,7 @@ namespace PodioCore
             HttpClient = new HttpClient();
         }
 
-		public PodioAccessToken Token => accessTokenProvider.AccessToken;
+		public PodioAccessToken Token => accessTokenProvider.TokenData;
 
 		#region Request Helpers
 
@@ -183,7 +183,7 @@ namespace PodioCore
 
             if (addAuthorizationHeader)
             {
-				request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessTokenProvider.AccessToken.Token);
+				request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessTokenProvider.TokenData.AccessToken);
             }
 
             return request;

@@ -10,11 +10,10 @@ namespace PodioCore.Auth
 	public class PasswordAuthTokenProvider : IAccessTokenProvider
 	{
 		string clientId, clientSecret, username, password;
-		public PodioAccessToken AccessToken => new System.Lazy<PodioAccessToken>(
+		public PodioAccessToken TokenData => new System.Lazy<PodioAccessToken>(
 			() => auth()
 		).Value;
-
-
+        
 		public PasswordAuthTokenProvider(string clientId, string clientSecret, string username, string password)
 		{
 			this.clientId = clientId;
@@ -44,8 +43,9 @@ namespace PodioCore.Auth
 			var expiration = int.Parse(podioOAuth.ExpiresIn) + getEpoch();
 			return new PodioAccessToken
 			{
-				Token = podioOAuth.AccessToken,
-				Expiration = expiration
+				AccessToken = podioOAuth.AccessToken,
+				Expiration = expiration,
+                RefreshToken = podioOAuth.RefreshToken
 			};
 		}
 
