@@ -10,10 +10,7 @@ namespace PodioCore.Auth
 	public class PasswordAuthTokenProvider : IAccessTokenProvider
 	{
 		string clientId, clientSecret, username, password;
-		public PodioAccessToken TokenData => new System.Lazy<PodioAccessToken>(
-			() => auth()
-		).Value;
-        
+		PodioAccessToken _token = null;
 		public PasswordAuthTokenProvider(string clientId, string clientSecret, string username, string password)
 		{
 			this.clientId = clientId;
@@ -22,6 +19,23 @@ namespace PodioCore.Auth
 			this.password = password;
 		}
         
+		public PodioAccessToken TokenData
+        {
+            get
+            {
+				if (_token == null)
+					_token = auth();
+				if (_token.Expiration < getEpoch())
+					_token = refresh();
+				return _token;
+            }
+        }
+
+		private PodioAccessToken refresh()
+		{
+			throw new NotImplementedException();
+		}
+
 		private PodioAccessToken auth()
 		{
 			var authRequest = new Dictionary<string, string>()
@@ -40,7 +54,7 @@ namespace PodioCore.Auth
 			var responseString = response.Content.ReadAsStringAsync().Result;
 			var podioOAuth = Newtonsoft.Json.JsonConvert.DeserializeObject<PodioOAuth>(responseString);
 
-			var expiration = int.Parse(podioOAuth.ExpiresIn) + getEpoch();
+			var expiration = podioOAuth.ExpiresIn + getEpoch();
 			return new PodioAccessToken
 			{
 				AccessToken = podioOAuth.AccessToken,
