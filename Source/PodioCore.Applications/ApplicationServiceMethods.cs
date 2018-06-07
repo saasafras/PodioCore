@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 using PodioCore.Models;
@@ -67,5 +68,19 @@ namespace PodioCore.Applications
             var result = await _service.GetAppsBySpace(spaceId, false, attributes);
             return result;
         }
+
+		public static async Task ToggleFieldVisibility(this Podio client, int appId, IEnumerable<int> fieldIds, bool hide, bool silent = true)
+		{
+			if (!initialized)
+				init(client);
+
+			var app = await _service.GetApp(appId, "full");
+			foreach (var fieldId in fieldIds)
+			{
+				var field = app.Fields.First(f => f.FieldId == fieldId);
+				field.Config.AlwaysHidden = hide;
+			}
+			await _service.UpdateApp(app, silent);
+		}
     }
 }

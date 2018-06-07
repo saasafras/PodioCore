@@ -13,7 +13,7 @@ namespace PodioCore.Utils.Authentication
         public string RefreshToken { get; set; }
 
         [JsonProperty(PropertyName = "expires_in")]
-        public string ExpiresIn { get; set; }
+        public int ExpiresIn { get; set; }
 
         [JsonProperty(PropertyName = "token_type")]
         public string TokenType { get; set; }

@@ -43,5 +43,8 @@ namespace PodioCore.Models
 
         [JsonProperty("hidden", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Hidden { get; set; }
+
+		[JsonProperty("hidden_create_view_edit", NullValueHandling = NullValueHandling.Ignore)]
+		public bool? AlwaysHidden { get; set; }
     }
 }
