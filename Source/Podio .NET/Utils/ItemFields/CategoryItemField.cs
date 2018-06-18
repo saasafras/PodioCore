@@ -11,31 +11,49 @@ namespace PodioCore.Utils.ItemFields
 
         public IEnumerable<Option> Options
         {
-            get { return this.ValuesAs<Option>(); }
+            get 
+			{
+				List<Option> result;
+				try
+				{
+					result = this.ValuesAs<Option>();
+				}
+				catch(JsonSerializationException)
+				{
+					result = new List<Option>();
+					foreach (var token in this.Values)
+                    {
+                        var text = (string)token["value"];
+                        if (!string.IsNullOrEmpty(text))
+							result.Add(new Option { Text = text });
+                    }
+				}
+				return result;
+			}
         }
 
-        public int OptionId
-        {
-            set
-            {
-                EnsureValuesInitialized(true);
-                this.Values.First()["value"] = value;
-            }
-        }
+        //public int OptionId
+        //{
+        //    set
+        //    {
+        //        EnsureValuesInitialized(true);
+        //        this.Values.First()["value"] = value;
+        //    }
+        //}
 
-        public IEnumerable<int> OptionIds
-        {
-            set
-            {
-                EnsureValuesInitialized();
-                foreach (var optionId in value)
-                {
-                    var jobject = new JObject();
-                    jobject["value"] = optionId;
-                    this.Values.Add(jobject);
-                }
-            }
-        }
+        //public IEnumerable<int> OptionIds
+        //{
+        //    set
+        //    {
+        //        EnsureValuesInitialized();
+        //        foreach (var optionId in value)
+        //        {
+        //            var jobject = new JObject();
+        //            jobject["value"] = optionId;
+        //            this.Values.Add(jobject);
+        //        }
+        //    }
+        //}
 
         public string OptionText
         {

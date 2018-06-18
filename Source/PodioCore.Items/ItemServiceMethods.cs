@@ -60,9 +60,9 @@ namespace PodioCore.Items
             var result = await _service.UpdateItem(item, silent: true, hook: hook);
             if(!result.HasValue)
 			{
-				System.Console.WriteLine("Podio update failed for item:");
+				System.Console.WriteLine("revision_id was not returned. There was probably nothing to update.");
 				System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(item));
-				throw new System.Exception("Podio update failed. Please check the logs.");
+				return 0;
 			}
             return result.Value;
         }
