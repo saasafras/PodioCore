@@ -16,6 +16,14 @@ namespace PodioCore.Applications
             initialized = true;
         }
         
+        public static async Task<int> AddNewApp(this Podio client, Application newApp)
+		{
+			if (!initialized)
+				init(client);
+			
+			return await _service.AddNewApp(newApp);
+		}
+
 		public static async Task<Application> GetApplication(this Podio client, int appId)
         {
             if (!initialized)
@@ -81,6 +89,31 @@ namespace PodioCore.Applications
 				field.Config.AlwaysHidden = hide;
 			}
 			await _service.UpdateApp(app, silent);
+		}
+
+        public static async Task<ApplicationField> GetAppField(this Podio client, int appId, int itemId)
+		{
+			if (!initialized)
+				init(client);
+			return await _service.GetAppField(appId, itemId);
+		}
+        public static async Task UpdateAppField(this Podio client, Application app)
+		{
+			if (!initialized)
+				init(client);
+			await _service.UpdateAnAppField(app);
+		}
+        public static async Task<int> AddNewAppField(this Podio client, int appId, ApplicationField appField)
+		{
+			if (!initialized)
+				init(client);
+			return await _service.AddNewAppField(appId, appField);
+		}
+        public static async Task DeleteAppField(this Podio client, int appId, int fieldId)
+		{
+			if (!initialized)
+				init(client);
+			await _service.DeleteAppField(appId, fieldId);
 		}
     }
 }
