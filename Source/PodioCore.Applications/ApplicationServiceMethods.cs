@@ -42,6 +42,14 @@ namespace PodioCore.Applications
             return result;
         }
 
+        public static async Task<IEnumerable<Application>> GetAppsBySpace(this Podio client, int workspaceId)
+		{
+			if (!initialized)
+				init(client);
+			
+			return await _service.GetAppsBySpace(workspaceId, false);
+		}
+
         public static async Task<int> CreateApplication(this Podio client, Application app)
         {
             if (!initialized)
@@ -97,13 +105,22 @@ namespace PodioCore.Applications
 				init(client);
 			return await _service.GetAppField(appId, itemId);
 		}
-        public static async Task UpdateAppField(this Podio client, Application app)
-		{
-			if (!initialized)
-				init(client);
-			await _service.UpdateAnAppField(app);
-		}
-        public static async Task<int> AddNewAppField(this Podio client, int appId, ApplicationField appField)
+
+		public static async Task UpdateAnAppField(this Podio client, Application app)
+        {
+            if (!initialized)
+                init(client);
+            await _service.UpdateAnAppField(app);
+        }
+
+		public static async Task UpdateAnAppField(this Podio client, int appId, int fieldId, FieldConfig config)
+        {
+            if (!initialized)
+                init(client);
+            await _service.UpdateAnAppField(appId, fieldId, config);
+        }
+        
+		public static async Task<int> AddNewAppField(this Podio client, int appId, ApplicationField appField)
 		{
 			if (!initialized)
 				init(client);

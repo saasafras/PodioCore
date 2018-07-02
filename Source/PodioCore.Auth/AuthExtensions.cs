@@ -33,7 +33,29 @@ namespace PodioCore.Auth
 
 		private PodioAccessToken refresh()
 		{
-			throw new NotImplementedException();
+			var authRequest = new Dictionary<string, string>()
+			{
+				{"client_id",clientId},
+				{"client_secret",clientSecret},
+				{"refresh_token",_token.RefreshToken},
+				{"grant_type", "refresh_token"}
+			};
+
+            var authClient = new HttpClient();
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "https://api.podio.com:443/oauth/token");
+            requestMessage.Content = new FormUrlEncodedContent(authRequest);
+            var response = authClient.SendAsync(requestMessage).Result;
+            var responseString = response.Content.ReadAsStringAsync().Result;
+            var podioOAuth = Newtonsoft.Json.JsonConvert.DeserializeObject<PodioOAuth>(responseString);
+
+            var expiration = podioOAuth.ExpiresIn + getEpoch();
+            _token = new PodioAccessToken
+            {
+                AccessToken = podioOAuth.AccessToken,
+                Expiration = expiration,
+                RefreshToken = podioOAuth.RefreshToken
+            };
+			return _token;
 		}
 
 		private PodioAccessToken auth()
@@ -55,12 +77,13 @@ namespace PodioCore.Auth
 			var podioOAuth = Newtonsoft.Json.JsonConvert.DeserializeObject<PodioOAuth>(responseString);
 
 			var expiration = podioOAuth.ExpiresIn + getEpoch();
-			return new PodioAccessToken
+			_token = new PodioAccessToken
 			{
 				AccessToken = podioOAuth.AccessToken,
 				Expiration = expiration,
                 RefreshToken = podioOAuth.RefreshToken
 			};
+			return _token;
 		}
 
 		private int getEpoch()

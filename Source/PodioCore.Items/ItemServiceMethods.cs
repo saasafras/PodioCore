@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 using PodioCore.Models;
@@ -91,6 +92,14 @@ namespace PodioCore.Items
 
 			var items = await _service.FilterItems(appId, filterOptions, false);
 			return items;
+		}
+        
+        public static async Task ActionOnFilterItems(this Podio client, int appId, Action<Item> action, Models.Request.FilterOptions filterOptions)
+		{
+			if (!initialized)
+				init(client);
+
+			await _service.FilterItemsForAction(appId, action, filterOptions);
 		}
 
         public static async Task<List<ItemRevision>> GetItemRevisions(this Podio client, int itemId)

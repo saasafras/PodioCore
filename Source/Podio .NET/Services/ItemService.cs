@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -253,7 +254,7 @@ namespace PodioCore.Items
         /// <param name="filterOptions"></param>
         /// <param name="includeFiles"></param>
         /// <returns>Collection of matching items</returns>
-        public async Task<PodioCollection<Item>> FilterItems(int appId, FilterOptions filterOptions, bool includeFiles = false)
+		public async Task<PodioCollection<Item>> FilterItems(int appId, FilterOptions filterOptions, bool includeFiles = false)
         {
             filterOptions.Limit = filterOptions.Limit == 0 ? 30 : filterOptions.Limit;
             string url = string.Format("/item/app/{0}/filter/", appId);
@@ -263,6 +264,47 @@ namespace PodioCore.Items
             }
             return await _podio.Post<PodioCollection<Item>>(url, filterOptions);
         }
+        
+		public async System.Threading.Tasks.Task FilterItemsForAction(int appId, Action<Item> action, FilterOptions filterOptions = null)
+        {
+			int offset = 0;
+			int batchSize = 300;
+			int limit = 1;
+			var options = filterOptions ?? new FilterOptions();
+			if (options.Limit.HasValue)
+				limit = options.Limit.Value;
+			if (options.Offset.HasValue)
+				offset = options.Offset.Value;
+			int count = offset + limit;
+
+			string url = string.Format("/item/app/{0}/filter/?fields=items.fields(app)", appId);
+
+			while(offset < count)
+			{
+				options.Limit = limit < batchSize ? limit : batchSize;
+                options.Offset = offset;
+				Console.WriteLine($"Getting items {options.Offset.Value} through {options.Offset.Value + options.Limit.Value}");
+				var batch = await _podio.Post<PodioCollection<Item>>(url, options);
+
+				if (!filterOptions?.Limit.HasValue ?? true)
+					count = batch.Filtered;
+				
+                foreach(var item in batch.Items)
+				{
+					action.Invoke(item);
+				}
+
+				offset += options.Limit.Value;
+			}
+        }
+
+		public async Task<int> CountItems(int appId)
+		{
+			string countUrl = string.Format("/item/app/{0}/count/", appId);
+			var countResponse = await _podio.Get<dynamic>(countUrl);
+			int itemCount = countResponse.count;
+			return itemCount;
+		}
 
         /// <summary>
         ///     Filters the items and returns the matching items.
