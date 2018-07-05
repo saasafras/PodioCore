@@ -7,25 +7,41 @@ using PodioCore.Utils;
 using PodioCore.Services;
 namespace PodioCore.Items
 {
-    public static class ItemServiceMethods
-    {
-        private static ItemService _service;
-        private static bool initialized;
-        private static void init(Podio client)
-        {
-            _service = new ItemService(client);
-            initialized = true;
-        }
+	public static class ItemServiceMethods
+	{
+		private static ItemService _service;
+		private static bool initialized;
+		private static void init(Podio client)
+		{
+			_service = new ItemService(client);
+			initialized = true;
+		}
 
 		public static async Task<Item> GetItem(this Podio client, int itemId)
-        {
-            if (!initialized)
-                init(client);
-            
-            var result = await _service.GetItemBasic(itemId, false);
-            return result;
-        }
-        
+		{
+			if (!initialized)
+				init(client);
+
+			var result = await _service.GetItemBasic(itemId, false);
+			return result;
+		}
+
+		public static async Task<int> GetCurrentItemVersion(this Podio client, int itemId)
+		{
+			if (!initialized)
+				init(client);
+
+			var attributes = new Dictionary<string, string>
+			{
+				{"view","micro"},
+				{"fields","current_revision"}
+			};
+			var url = $"/item/{itemId}";
+			var result = await client.Get<dynamic>(url, attributes);
+			int cr = result.current_revision.revision;
+			return cr;
+		}
+
 		public static async Task<Item> GetAppItem(this Podio client, int appId, int appItemId)
         {
             if (!initialized)
