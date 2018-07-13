@@ -158,6 +158,7 @@ namespace PodioCore
                 }
                 else
                 {
+					Console.WriteLine($"Processing error for: {responseBody}");
                     ProcessErrorResponse(response.StatusCode, podioError);
                 }
 
