@@ -132,5 +132,11 @@ namespace PodioCore.Applications
 				init(client);
 			await _service.DeleteAppField(appId, fieldId);
 		}
+        public static async Task DeleteApp(this Podio client, int appId)
+        {
+            if (!initialized)
+                init(client);
+            await _service.DeleteApp(appId);
+        }
     }
 }
