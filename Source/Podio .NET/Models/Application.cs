@@ -122,6 +122,11 @@ namespace PodioCore.Models
             return fieldInstance<T>(genericField);
         }
 
+        public T Field<T>(ApplicationField genericField) where T : ApplicationField, new()
+        {
+            return fieldInstance<T>(genericField);
+        }
+
         /// <summary>
         ///     For application create and update only
         ///     <para>Use the other overloads for retrival</para>
