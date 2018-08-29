@@ -99,11 +99,11 @@ namespace PodioCore.Applications
 			await _service.UpdateApp(app, silent);
 		}
 
-        public static async Task<ApplicationField> GetAppField(this Podio client, int appId, int itemId)
+        public static async Task<ApplicationField> GetAppField(this Podio client, int appId, int fieldId)
 		{
 			if (!initialized)
 				init(client);
-			return await _service.GetAppField(appId, itemId);
+			return await _service.GetAppField(appId, fieldId);
 		}
 
 		public static async Task UpdateAnAppField(this Podio client, Application app)
