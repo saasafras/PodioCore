@@ -24,6 +24,7 @@
     <Compile Remove="..\Podio .NET\obj\**\*.cs" />
     <Compile Include="..\Podio .NET\**\*.cs" Exclude="..\Podio .NET\obj\**\*.cs;bin\**;obj\**;**\*.xproj;packages\**" />
     <Compile Remove="..\Podio .NET\Properties\AssemblyInfo.cs" />
+    <Compile Remove="WidgetFilter.cs" />
   </ItemGroup>
 
   <ItemGroup>
