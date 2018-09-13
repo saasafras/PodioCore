@@ -161,7 +161,8 @@ namespace PodioCore.Services
         public async Task<int> CopyFile(int fileId)
         {
             string url = string.Format("/file/{0}/copy", fileId);
-            dynamic response = await _podio.Post<dynamic>(url);
+            dynamic requestData = new { body = "" };
+            dynamic response = await _podio.Post<dynamic>(url,requestData);
             return (int)response["file_id"];
         }
 
