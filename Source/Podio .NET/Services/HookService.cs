@@ -67,8 +67,9 @@ namespace PodioCore.Services
         /// <param name="hookId"></param>
         public async Task<dynamic> Verify(int hookId)
         {
+            dynamic requestData = new { body = "" };
             string url = string.Format("/hook/{0}/verify/request", hookId);
-            return await _podio.Post<dynamic>(url);
+            return await _podio.Post<dynamic>(url, requestData);
         }
 
         /// <summary>
