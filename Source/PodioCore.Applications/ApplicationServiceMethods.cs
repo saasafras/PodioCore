@@ -93,9 +93,19 @@ namespace PodioCore.Applications
 			var app = await _service.GetApp(appId, "full");
 			foreach (var fieldId in fieldIds)
 			{
-				var field = app.Fields.First(f => f.FieldId == fieldId);
-				field.Config.AlwaysHidden = hide;
-			}
+                if (!app.Fields.Any(f => f.FieldId == fieldId))
+                {
+                    System.Console.WriteLine($"Couldn't find field with id: {fieldId}");
+                    continue;
+                }
+                else
+                {
+                    var field = app.Fields.First(f => f.FieldId == fieldId);
+                    System.Console.WriteLine($"Settings field {field.Label}/{fieldId} to AlwaysHidden.");
+                    field.Config.AlwaysHidden = hide;
+                }
+            }
+
 			await _service.UpdateApp(app, silent);
 		}
 
