@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using PodioCore.Utils.ApplicationFields;
 using System.Reflection;
@@ -76,8 +77,30 @@ namespace PodioCore.Models
         [JsonProperty("integration")]
         public Integration Integration { get; set; }
 
+        private List<ApplicationField> _fields = new List<ApplicationField>();
+        [JsonIgnore]
+        public List<ApplicationField> Fields
+        {
+            get; set;
+        }
+
         [JsonProperty("fields")]
-        public List<ApplicationField> Fields { get; set; }
+        public IEnumerable<ApplicationField> FieldsToInclude
+        {
+            get
+            {
+                return _fields.Where(f => f.Status == "active");
+            }
+        }
+
+        [JsonProperty("fields_to_delete", NullValueHandling = NullValueHandling.Ignore)]
+        public IEnumerable<ApplicationField> FieldsToDelete 
+        { 
+            get
+            {
+                return _fields.Where(f=>f.Status == "deleted");
+            }
+        }
 
         [JsonProperty("pinned")]
         public bool Pinned { get; set; }
@@ -235,6 +258,17 @@ namespace PodioCore.Models
             {
                 field.Type = "tel";
             }
+        }
+    }
+
+    public static class ApplicationFieldsExtensions
+    {
+        public static void Delete(this List<ApplicationField> fields, ApplicationField field)
+        {
+            if (!fields.Contains(field))
+                fields.Add(field);
+
+            field.Status = "deleted";
         }
     }
 }

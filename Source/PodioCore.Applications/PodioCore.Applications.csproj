@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>0.0.17</PackageVersion>
+    <PackageVersion>0.0.18</PackageVersion>
     <Authors>Saasafras</Authors>
     <Description>adapted from https://github.com/podio/podio-dotnet/
--logging for ToggleFieldVisibility</Description>
+-PodioCore.Async 0.0.21</Description>
     <PackageId>PodioCore.Applications</PackageId>
   </PropertyGroup>
 
@@ -20,6 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
-    <PackageReference Include="PodioCore.Async" Version="0.0.19" />
+    <PackageReference Include="PodioCore.Async" Version="0.0.21" />
   </ItemGroup>
 </Project>
