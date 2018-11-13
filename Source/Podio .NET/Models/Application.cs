@@ -11,7 +11,6 @@ namespace PodioCore.Models
     {
         public Application()
         {
-            this.Fields = new List<ApplicationField>();
         }
 
         [JsonProperty("app_id")]
@@ -79,10 +78,7 @@ namespace PodioCore.Models
 
         private List<ApplicationField> _fields = new List<ApplicationField>();
         [JsonIgnore]
-        public List<ApplicationField> Fields
-        {
-            get; set;
-        }
+        public List<ApplicationField> Fields => _fields;
 
         [JsonProperty("fields")]
         public IEnumerable<ApplicationField> FieldsToInclude
@@ -91,9 +87,9 @@ namespace PodioCore.Models
             {
                 return _fields.Where(f => f.Status == "active");
             }
-            private set
+            set
             {
-                Fields = new List<ApplicationField>(value);
+                _fields = new List<ApplicationField>(value);
             }
         }
 
