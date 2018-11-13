@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>0.0.18</PackageVersion>
+    <PackageVersion>0.0.19</PackageVersion>
     <Authors>Saasafras</Authors>
     <Description>adapted from https://github.com/podio/podio-dotnet/
 -PodioCore.Async 0.0.21</Description>
@@ -20,6 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
-    <PackageReference Include="PodioCore.Async" Version="0.0.21" />
+    <PackageReference Include="PodioCore.Async" Version="0.0.22" />
   </ItemGroup>
 </Project>

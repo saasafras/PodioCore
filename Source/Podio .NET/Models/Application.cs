@@ -91,6 +91,10 @@ namespace PodioCore.Models
             {
                 return _fields.Where(f => f.Status == "active");
             }
+            private set
+            {
+                Fields = new List<ApplicationField>(value);
+            }
         }
 
         [JsonProperty("fields_to_delete", NullValueHandling = NullValueHandling.Ignore)]
