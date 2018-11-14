@@ -77,19 +77,17 @@ namespace PodioCore.Models
         public Integration Integration { get; set; }
 
         private List<ApplicationField> _fields = new List<ApplicationField>();
-        [JsonIgnore]
-        public List<ApplicationField> Fields => _fields;
 
         [JsonProperty("fields")]
-        public IEnumerable<ApplicationField> FieldsToInclude
+        public List<ApplicationField> Fields
         {
             get
             {
-                return _fields.Where(f => f.Status == "active");
+				return _fields;
             }
             set
             {
-                _fields = new List<ApplicationField>(value);
+				_fields = value;
             }
         }
 
