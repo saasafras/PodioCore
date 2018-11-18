@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using PodioCore.Models;
-
+using Newtonsoft.Json;
 namespace PodioCore.Utils.ApplicationFields
 {
+
     public class AppReferenceApplicationField : ApplicationField
     {
         private IEnumerable<int> _referenceableTypes;
@@ -25,6 +26,20 @@ namespace PodioCore.Utils.ApplicationFields
             {
                 InitializeFieldSettings();
                 this.InternalConfig.Settings["referenceable_types"] = value != null ? JToken.FromObject(value) : null;
+            }
+        }
+
+        private IEnumerable<ReferencedApplication> _referencedApps; 
+        [JsonProperty(PropertyName = "apps",NullValueHandling = NullValueHandling.Ignore)]
+        public IEnumerable<ReferencedApplication> ReferenceableApps
+        {
+            get
+            {
+                if(_referencedApps == null)
+                {
+                    _referencedApps = this.GetSettingsAs<ReferencedApplication>("apps");
+                }
+                return _referencedApps;
             }
         }
 
