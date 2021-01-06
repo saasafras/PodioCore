@@ -74,7 +74,7 @@ All the wrapped methods either return a strongly typed model, or a collection of
 Error Handling
 --------------
 
-All unsuccessful responses returned by the API (everything that has a 4xx or 5xx HTTP status code) will throw exceptions. All exceptions inherit from `PodioAPI.Exceptions.PodioException` and and it has an `Error` property that represents the strongly typed version of response from the API:
+All unsuccessful responses returned by the API (everything that has a 4xx or 5xx HTTP status code) will throw exceptions. All exceptions inherit from `PodioCore.Exceptions.PodioException` and and it has an `Error` property that represents the strongly typed version of response from the API:
 
 ```csharp
 try
@@ -95,12 +95,14 @@ Full Example
 Adding a new item with a file on an application with id 5678.
 
 ```csharp
-using PodioAPI;
-using PodioAPI.Models;
-using PodioAPI.Utils.ItemFields;
-using PodioAPI.Exceptions;
+using PodioCore;
+using PodioCore.Models;
+using PodioCore.Utils.ItemFields;
+using PodioCore.Exceptions;
 
-await podio.AuthenticateWithPassword("YOUR_PODIO_USERNAME", "YOUR_PODIO_PASSWORD");
+//get an IAccessTokenProvider somewhere
+IAccessTokenProvider accessTokenProvider;
+var podio = new Podio(accessTokenProvider);
 
 Item myNewItem = new Item();
 
